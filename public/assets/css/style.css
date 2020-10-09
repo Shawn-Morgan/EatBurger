@@ -1,3 +1,7 @@
+body {
+  background: rgb(247, 152, 117);
+}
+
 li {
   padding: 5px;
   margin: 5px;
@@ -17,3 +21,9 @@ li {
 .form-group {
   margin-bottom: 5px;
 }
+
+h1 {
+  color: blue;
+  padding-bottom: 10px;
+}
+

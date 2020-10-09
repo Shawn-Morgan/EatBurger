@@ -1,8 +1,8 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-  $(".change-sleep").on("click", function(event) {
+  $(".change-burger").on("click", function(event) {
     var id = $(this).data("id");
-    var newBurger = $(this).data("newsleep");
+    var newBurger = $(this).data("newburger");
 
     var newBurgerState = {
       devoured: newBurger
@@ -14,7 +14,7 @@ $(function() {
       data: newBurgerState
     }).then(
       function() {
-        console.log("changed sleep to", newBurger);
+        console.log("changed burger to", newBurger);
         // Reload the page to get the updated list
         location.reload();
       }
@@ -43,7 +43,7 @@ $(function() {
     );
   });
 
-  $(".delete-cat").on("click", function(event) {
+  $(".delete-burger").on("click", function(event) {
     var id = $(this).data("id");
 
     // Send the DELETE request.
@@ -51,7 +51,7 @@ $(function() {
       type: "DELETE"
     }).then(
       function() {
-        console.log("deleted cat", id);
+        console.log("deleted burger", id);
         // Reload the page to get the updated list
         location.reload();
       }

@@ -2,27 +2,34 @@ var express = require("express");
 
 var router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
-var cat = require("../models/burger.js");
+// Import the model (burger.js) to use its database functions.
+var burger = require("../models/burger.js");
 
 // Create all our routes and set up logic within those routes where required.
+// Start page
 router.get("/", function(req, res) {
-  cat.all(function(data) {
+  burger.select(function(data) {
     var hbsObject = {
-      cats: data
+      burgers: data
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
 
+// Get burgers populated first by seeds file as default values and then as added through app
+router.get("/", function(req, res) {
+  res.redirect("/burgers");
+  console.log(hbsObject);
+  res.render("index", hbsObject);
+});
+
+// Add burgers 
 router.post("/api/burgers", function(req, res) {
-  cat.create([
-    "name", "sleepy"
-  ], [
-    req.body.name, req.body.sleepy
-  ], function(result) {
-    // Send back the ID of the new quote
+  burger.create
+    (["burger_name"], [req.body.burger_name], 
+    function(result) {
+    // Send back the ID of the new item
     res.json({ id: result.insertId });
   });
 });
@@ -32,8 +39,8 @@ router.put("/api/burgers/:id", function(req, res) {
 
   console.log("condition", condition);
 
-  cat.update({
-    sleepy: req.body.sleepy
+  burger.update({
+    devoured: req.body.devoured
   }, condition, function(result) {
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
@@ -47,7 +54,7 @@ router.put("/api/burgers/:id", function(req, res) {
 router.delete("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
-  cat.delete(condition, function(result) {
+  burger.delete(condition, function(result) {
     if (result.affectedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
