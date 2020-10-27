@@ -18,11 +18,11 @@ router.get("/", function(req, res) {
 });
 
 // Get burgers populated first by seeds file as default values and then as added through app
-router.get("/", function(req, res) {
-  res.redirect("/burgers");
-  console.log(hbsObject);
-  res.render("index", hbsObject);
-});
+// router.get("/", function(req, res) {
+//   res.redirect("/burgers");
+//   console.log(hbsObject);
+//   res.render("index", hbsObject);
+// });
 
 // Add burgers 
 router.post("/api/burgers", function(req, res) {
