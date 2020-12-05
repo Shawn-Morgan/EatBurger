@@ -18,13 +18,13 @@ router.get("/", function(req, res) {
 });
 
 // Get burgers populated first by seeds file as default values and then as added through app
-// router.get("/", function(req, res) {
-//   res.redirect("/burgers");
-//   console.log(hbsObject);
-//   res.render("index", hbsObject);
-// });
+router.get("/", function(req, res) {
+  res.redirect("/burgers");
+  console.log(hbsObject);
+  res.render("index", hbsObject);
+});
 
-// Add burgers 
+// Add burgers - POST
 router.post("/api/burgers", function(req, res) {
   burger.create
     (["burger_name"], [req.body.burger_name], 
@@ -34,6 +34,16 @@ router.post("/api/burgers", function(req, res) {
   });
 });
 
+//Next try
+// router.post("/api/burgers", function (req, res) {
+//   var burgerName = req.body.burger_name;
+//   burger.insertOne("burger_name", burgerName, function (result) {
+//       res.json({ id: result.insertId });
+//   });
+// });
+
+
+// Update burgers - PUT
 router.put("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
@@ -50,6 +60,7 @@ router.put("/api/burgers/:id", function(req, res) {
     }
   });
 });
+
 
 router.delete("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
